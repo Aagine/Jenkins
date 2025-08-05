@@ -1,12 +1,16 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3.9.11'   // Must exactly match the name you gave in Jenkins Global Tool Config
+    }
+
     stages {
         stage('Build') {
             steps {
                 echo 'Building the project...'
-                // If Maven is installed and configured on Jenkins agent, run:
-                sh 'mvn clean package'
+                sh 'mvn clean package'  // for Linux/mac agents
+                // bat 'mvn clean package'  // use this if your agent is Windows
             }
         }
     }
